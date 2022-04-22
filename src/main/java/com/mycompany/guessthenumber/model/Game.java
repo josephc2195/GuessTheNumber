@@ -8,7 +8,7 @@ package com.mycompany.guessthenumber.model;
  *
  * @author chica
  */
-public class GuessTheNumber {
+public class Game {
     private int gameId;
     private String answer;
     private boolean finished;

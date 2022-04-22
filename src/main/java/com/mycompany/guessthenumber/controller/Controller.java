@@ -4,7 +4,9 @@
  */
 package com.mycompany.guessthenumber.controller;
 
+
 import com.mycompany.guessthenumber.data.Dao;
+import com.mycompany.guessthenumber.model.Game;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
  * @author chica
  */
 @RestController
-@RequestMapping("/game")
+@RequestMapping("/api/todo")
+
 public class Controller {
     
     private final Dao dao;
