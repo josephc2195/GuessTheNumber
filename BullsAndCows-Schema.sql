@@ -12,6 +12,25 @@ create table game(
     
 );
 
+create table `round`(
+	
+    roundid int auto_increment,
+    gameid int not null,
+    roundNumber int not null,
+    roundtime timestamp,
+    result varchar(20),
+    
+    constraint pk_round
+		primary key(roundid, gameid),
+        
+     constraint fk_round_game
+		foreign key(gameid)
+		references game(gameid)	
+);    
+    
+    
+
+
 insert into game(answer, finnished, attempts)
 values(1234, false, 0);
 
