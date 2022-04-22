@@ -4,10 +4,18 @@
  */
 package com.mycompany.guessthenumber.data;
 
+import com.mycompany.guessthenumber.model.Game;
+import com.mycompany.guessthenumber.model.Round;
+import java.util.List;
+
 /**
  *
  * @author chica
  */
 public interface Dao {
+    List<Round> getAll();
     
+    Game findById(int id);
+    
+    int totalRounds(Round round);    
 }

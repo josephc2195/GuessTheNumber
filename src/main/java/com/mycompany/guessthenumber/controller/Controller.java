@@ -4,10 +4,15 @@
  */
 package com.mycompany.guessthenumber.controller;
 
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 /**
  *
  * @author chica
  */
+@RestController
+@RequestMapping("/api/todo")
 public class Controller {
     
 }

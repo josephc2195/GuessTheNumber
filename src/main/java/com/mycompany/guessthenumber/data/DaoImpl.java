@@ -8,6 +8,6 @@ package com.mycompany.guessthenumber.data;
  *
  * @author chica
  */
-public interface DaoImpl {
+public class DaoImpl {
     
 }
