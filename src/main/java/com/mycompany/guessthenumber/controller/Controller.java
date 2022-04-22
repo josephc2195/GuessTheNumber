@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author chica
  */
+@RestController
+@RequestMapping("/game")
 public class Controller {
     
     private final Dao dao;
