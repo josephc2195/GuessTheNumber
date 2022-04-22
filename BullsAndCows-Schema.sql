@@ -16,7 +16,6 @@ create table `round`(
 	
     roundid int auto_increment,
     gameid int not null,
-    roundNumber int not null,
     roundtime timestamp,
     result varchar(20),
     
@@ -26,8 +25,7 @@ create table `round`(
      constraint fk_round_game
 		foreign key(gameid)
 		references game(gameid)	
-);    
-    
+);
     
 
 
