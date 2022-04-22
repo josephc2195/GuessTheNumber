@@ -8,6 +8,7 @@ import com.mycompany.guessthenumber.model.Game;
 import com.mycompany.guessthenumber.model.Round;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -29,13 +30,15 @@ public class DatabaseDao implements Dao{
 
     @Override
     public List<Game> getAllGames() {
-        final String cmd = "SELECT gameid, finnished, attempts FROM game";
+        final String cmd = "SELECT gameid, answer, finnished, attempts FROM game";
         return jdbcTemplate.query(cmd, new GameMapper());
     }
 
     @Override
     public List<Round> getAllRounds() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        final String cmd = "SELECT roundid, gameid, roundtime, result";
+        return jdbcTemplate.query(cmd, new RoundMapper());
+
     }
 
     @Override
@@ -54,9 +57,23 @@ public class DatabaseDao implements Dao{
         public Game mapRow(ResultSet rs, int index) throws SQLException {
             Game g1 = new Game();
             g1.setGameId(rs.getInt("gameid"));
+            g1.setAnswer(rs.getString("answer"));
             g1.setFinished(rs.getBoolean("finnished"));
             g1.setAttempts(rs.getInt("attempts"));
             return g1;
         }
+    }
+    
+    private static final class RoundMapper implements RowMapper<Round> {
+        @Override
+        public Round mapRow(ResultSet rs, int i) throws SQLException {
+            Round r1 = new Round();
+            r1.setGameId(rs.getInt("gameId"));
+            r1.setResult(rs.getString("result"));
+            r1.setRoundId(rs.getInt("roundid"));
+            r1.setRoundtime(LocalDate.now());
+            return r1;
+        }
+        
     }
 }
