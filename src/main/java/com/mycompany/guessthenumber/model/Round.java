@@ -13,7 +13,6 @@ import java.time.LocalDate;
 public class Round {
     private int roundId;
     private int gameId;
-    private int roundNumber;
     private LocalDate roundtime;
     private String result;
 
@@ -32,15 +31,7 @@ public class Round {
     public void setGameId(int gameId) {
         this.gameId = gameId;
     }
-
-    public int getRoundNumber() {
-        return roundNumber;
-    }
-
-    public void setRoundNumber(int roundNumber) {
-        this.roundNumber = roundNumber;
-    }
-
+ 
     public LocalDate getRoundtime() {
         return roundtime;
     }
