@@ -13,7 +13,10 @@ import java.util.List;
  * @author chica
  */
 public interface Dao {
-    List<Round> getAll();
+    
+    List<Game> getAllGames();
+    
+    List<Round> getAllRounds();
     
     Game findById(int id);
     
