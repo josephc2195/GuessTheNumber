@@ -6,7 +6,7 @@ package com.mycompany.guessthenumber.controller;
 
 
 import com.mycompany.guessthenumber.data.Dao;
-import com.mycompany.guessthenumber.model.Round;
+import com.mycompany.guessthenumber.model.Game;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,8 +28,8 @@ public class Controller {
     }
 
     @GetMapping
-    public List<Round> all() {
-        return dao.getAll();
+    public List<Game> all() {
+        return dao.getAllGames();
     }
     
 }
