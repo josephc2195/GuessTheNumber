@@ -16,7 +16,7 @@ create table `round`(
 	
     roundid int auto_increment,
     gameid int not null,
-    roundNumber int not null,
+    
     roundtime timestamp,
     result varchar(20),
     
