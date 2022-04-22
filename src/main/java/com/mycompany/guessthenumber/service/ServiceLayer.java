@@ -4,10 +4,23 @@
  */
 package com.mycompany.guessthenumber.service;
 
+import com.mycompany.guessthenumber.model.Game;
+import com.mycompany.guessthenumber.model.Round;
+import java.util.List;
+
 /**
  *
  * @author chica
  */
 public interface ServiceLayer {
     
+    List<Game> getAllGames();
+    
+    Game getGameById(int id);
+    
+    void startGame();
+    
+    String guess(int guess); 
+    
+    List<Round> getRounds(int id);
 }
