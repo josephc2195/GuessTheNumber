@@ -42,14 +42,12 @@ public class DatabaseDao implements Dao{
     }
 
     @Override
-    public Game findById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Game gameById(int id) {
+        final String cmd = "SELECT gameid, answer, finnished, attempts FROM game " +
+                "WHERE gameId = ?";
+        return jdbcTemplate.queryForObject(cmd, new GameMapper(), id);
     }
 
-    @Override
-    public int totalRounds(Round round) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
     
     private static final class GameMapper implements RowMapper<Game> {
 

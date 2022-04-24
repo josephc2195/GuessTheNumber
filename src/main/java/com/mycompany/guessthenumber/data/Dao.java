@@ -18,7 +18,6 @@ public interface Dao {
     
     List<Round> getAllRounds();
     
-    Game findById(int id);
+    Game gameById(int id);
     
-    int totalRounds(Round round);    
 }
