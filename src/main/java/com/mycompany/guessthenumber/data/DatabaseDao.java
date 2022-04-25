@@ -28,7 +28,7 @@ public class DatabaseDao implements Dao{
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    DatabaseDao(JdbcTemplate jdbcTemplate) {
+    public DatabaseDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 

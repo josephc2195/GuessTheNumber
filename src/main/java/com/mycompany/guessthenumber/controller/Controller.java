@@ -43,6 +43,7 @@ public class Controller {
 
     @PostMapping("/guess") 
     public void userGuess(@RequestBody String gameId, @RequestBody String guess) {
+        System.out.println();
     }
     
     @GetMapping("/game")
