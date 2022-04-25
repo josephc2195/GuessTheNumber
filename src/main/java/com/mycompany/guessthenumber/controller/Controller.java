@@ -8,12 +8,14 @@ import com.mycompany.guessthenumber.data.Dao;
 import com.mycompany.guessthenumber.model.Game;
 import com.mycompany.guessthenumber.model.Round;
 import java.util.List;
-import org.springframework.http.ResponseEntity;
+import java.util.Random;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 /**
  *
  * @author chica
@@ -28,22 +30,26 @@ public class Controller {
         this.dao = dao;
     }
     
-    @PutMapping("/begin") 
-    public ResponseEntity<String> startGame() {
-        System.out.println("Game created");
-        return new ResponseEntity<>("Game created ", HttpStatus.CREATED);
+    @PostMapping("/begin") 
+    @ResponseStatus(HttpStatus.CREATED)
+    public Game startGame(@RequestBody Game game) {
+        Random rand = new Random();
+        game.setAnswer(String.valueOf(rand.nextInt(9999)));
+        game.setFinished(false);
+        game.setAttempts(0);
+        return dao.addGame(game);
     }
 
-    @PutMapping("/guess") 
-    public void userGuess(Game currentGame) {
-        System.out.println("guess received");
+    @PostMapping("/guess") 
+    public void userGuess(@RequestBody String gameId, @RequestBody String guess) {
     }
+    
     @GetMapping("/game")
     public List<Game> allGames() {
         return dao.getAllGames();
     }
 
-    @GetMapping("/round")
+    @GetMapping("/rounds")
     public List<Round> allRounds() {
         return dao.getAllRounds();
     }
@@ -53,4 +59,8 @@ public class Controller {
         return dao.gameById(id);
     }
 
+    @GetMapping("/rounds/{id}")
+    public List<Round> roundsById(int id) {
+        return dao.roundsById(id);
+    }
 }

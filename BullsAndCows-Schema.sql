@@ -8,7 +8,7 @@ create table game(
 	gameid int auto_increment primary key,
     answer int not null,
     finnished boolean not null,
-    attempts int not null
+    attempts int
     
 );
 

@@ -6,13 +6,17 @@ package com.mycompany.guessthenumber.data;
 
 import com.mycompany.guessthenumber.model.Game;
 import com.mycompany.guessthenumber.model.Round;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -38,7 +42,6 @@ public class DatabaseDao implements Dao{
     public List<Round> getAllRounds() {
         final String cmd = "SELECT roundid, gameid, roundtime, result";
         return jdbcTemplate.query(cmd, new RoundMapper());
-
     }
 
     @Override
@@ -48,6 +51,12 @@ public class DatabaseDao implements Dao{
         return jdbcTemplate.queryForObject(cmd, new GameMapper(), id);
     }
 
+    @Override
+    public List<Round> roundsById(int id) {
+        final String cmd = "SELECT roundid, roundtime, result FROM round "+
+                "WHERE gameId = ?";
+        return jdbcTemplate.query(cmd, new RoundMapper(), id);
+    }
     
     private static final class GameMapper implements RowMapper<Game> {
 
@@ -72,6 +81,28 @@ public class DatabaseDao implements Dao{
             r1.setRoundtime(LocalDate.now());
             return r1;
         }
-        
     }
+    
+    @Override
+    public Game addGame(Game game) {
+        final String cmd = "INSERT INTO game(answer, finnished, attempts) VALUES(?,?,0);";
+        GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
+
+        jdbcTemplate.update((Connection conn) -> {
+
+            PreparedStatement statement = conn.prepareStatement(
+                cmd, 
+                Statement.RETURN_GENERATED_KEYS);
+
+            statement.setString(1, game.getAnswer());
+            statement.setBoolean(2, game.isFinished());
+            return statement;
+
+        }, keyHolder);
+        
+        game.setGameId(keyHolder.getKey().intValue());
+        return game;
+    }
+    
+    
 }

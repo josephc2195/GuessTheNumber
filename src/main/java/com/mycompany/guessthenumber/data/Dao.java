@@ -19,5 +19,9 @@ public interface Dao {
     List<Round> getAllRounds();
     
     Game gameById(int id);
+
+    List<Round> roundsById(int id);
+    
+    Game addGame(Game game);
     
 }
