@@ -28,7 +28,7 @@ public class DatabaseDao implements Dao{
     private final JdbcTemplate jdbcTemplate;
 
     @Autowired
-    DatabaseDao(JdbcTemplate jdbcTemplate) {
+    public DatabaseDao(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 
@@ -36,12 +36,6 @@ public class DatabaseDao implements Dao{
     public List<Game> getAllGames() {
         final String cmd = "SELECT gameid, answer, finnished, attempts FROM game";
         return jdbcTemplate.query(cmd, new GameMapper());
-    }
-
-    @Override
-    public List<Round> getAllRounds() {
-        final String cmd = "SELECT roundid, gameid, roundtime, result";
-        return jdbcTemplate.query(cmd, new RoundMapper());
     }
 
     @Override

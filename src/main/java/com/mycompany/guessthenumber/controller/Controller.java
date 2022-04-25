@@ -43,16 +43,12 @@ public class Controller {
 
     @PostMapping("/guess") 
     public void userGuess(@RequestBody String gameId, @RequestBody String guess) {
+        System.out.println();
     }
     
     @GetMapping("/game")
     public List<Game> allGames() {
         return dao.getAllGames();
-    }
-
-    @GetMapping("/rounds")
-    public List<Round> allRounds() {
-        return dao.getAllRounds();
     }
 
     @GetMapping("/game/{id}")
