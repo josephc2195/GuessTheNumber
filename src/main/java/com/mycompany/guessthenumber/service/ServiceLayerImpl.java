@@ -19,21 +19,25 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class ServiceLayerImpl implements ServiceLayer{
     
-    
+
     private final Dao dao;
     
     @Autowired
     public ServiceLayerImpl(JdbcTemplate jdbcTemplate){
         dao = new DatabaseDao(jdbcTemplate);
+       
     }
-    
+  
     
     @Override
     public List<Game> getAllGames() {
         
-        
+       List<Game> games = dao.getAllGames();
+               games.forEach((g)-> {
+                if(!g.isFinished()) g.setAnswer("####");
+        });
               
-        return new ArrayList();
+        return games;
     }
 
     @Override
