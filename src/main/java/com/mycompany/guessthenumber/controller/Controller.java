@@ -32,8 +32,9 @@ public class Controller {
     
     @PostMapping("/begin") 
     @ResponseStatus(HttpStatus.CREATED)
-    public Game startGame(@RequestBody Game game) {
+    public Game startGame() {
         Random rand = new Random();
+        Game game = new Game();
         game.setAnswer(String.valueOf(rand.nextInt(9999)));
         game.setFinished(false);
         game.setAttempts(0);
