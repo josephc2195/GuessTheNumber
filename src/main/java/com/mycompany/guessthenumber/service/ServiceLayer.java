@@ -18,9 +18,9 @@ public interface ServiceLayer {
     
     Game getGameById(int id);
     
-    void startGame();
+    void startGame(Game game);
     
-    String guess(int guess); 
+    String guess(int gameId, String guess); 
     
     List<Round> getRounds(int id);
 }

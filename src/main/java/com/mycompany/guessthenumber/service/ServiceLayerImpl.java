@@ -43,17 +43,24 @@ public class ServiceLayerImpl implements ServiceLayer{
 
     @Override
     public Game getGameById(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        Game game = dao.gameById(id);
+        
+        if(!game.isFinished()) game.setAnswer("####");
+        
+        return game;
+        
     }
 
     @Override
-    public void startGame() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public void startGame(Game game) {
+        dao.addGame(game);
     }
 
     @Override
-    public String guess(int guess) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public String guess(int gameId, String guess ) {
+        
+        return "blank";
     }
 
     @Override
