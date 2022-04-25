@@ -39,12 +39,6 @@ public class DatabaseDao implements Dao{
     }
 
     @Override
-    public List<Round> getAllRounds() {
-        final String cmd = "SELECT roundid, gameid, roundtime, result";
-        return jdbcTemplate.query(cmd, new RoundMapper());
-    }
-
-    @Override
     public Game gameById(int id) {
         final String cmd = "SELECT gameid, answer, finnished, attempts FROM game " +
                 "WHERE gameId = ?";

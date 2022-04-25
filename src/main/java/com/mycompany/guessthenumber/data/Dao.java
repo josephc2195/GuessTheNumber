@@ -15,9 +15,7 @@ import java.util.List;
 public interface Dao {
     
     List<Game> getAllGames();
-    
-    List<Round> getAllRounds();
-    
+        
     Game gameById(int id);
 
     List<Round> roundsById(int id);

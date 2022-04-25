@@ -50,11 +50,6 @@ public class Controller {
         return dao.getAllGames();
     }
 
-    @GetMapping("/rounds")
-    public List<Round> allRounds() {
-        return dao.getAllRounds();
-    }
-
     @GetMapping("/game/{id}")
     public Game gameById(int id) {
         return dao.gameById(id);
