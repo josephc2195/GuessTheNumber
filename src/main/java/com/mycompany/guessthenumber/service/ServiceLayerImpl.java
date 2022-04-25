@@ -64,35 +64,25 @@ public class ServiceLayerImpl implements ServiceLayer {
 
         Game game = dao.gameById(gameId);
 
-        StringBuilder answer = new StringBuilder(game.getAnswer());
-        StringBuilder guessBuilder = new StringBuilder(guess);
+        String answer = game.getAnswer();
 
-        int exact = 0;
-        int partial = 0;
+        String result = "";
 
         // check the position looking for exact matches
         for (int i = 0; i < answer.length(); i++) {
-            if (guessBuilder.charAt(i) == answer.charAt(i)) {
-
-                //increment a counter for exact matches and remove matched numbers
-                answer.deleteCharAt(i);
-                guessBuilder.deleteCharAt(i);
-                exact++;
+            
+            if (guess.charAt(i) == answer.charAt(i)) {
+                result += "e";
+            } else if (answer.contains(guess.charAt(i) + "")) {
+                result += "p";
+            } else {
+                result += "0";
             }
+            
+            if (i < 3) result += ":"; 
+                        
         }
-
-        for (int i = 0; i < answer.length(); i++) {
-
-            if (answer.indexOf(guessBuilder.charAt(i) + "") != -1) {
-
-                //increment a counter for exact matches and remove matched numbers
-                answer.deleteCharAt(answer.indexOf(guessBuilder.charAt(i) + ""));
-                guessBuilder.deleteCharAt(i);
-                partial++;
-            }
-        }
-
-        return "e: " + exact + " p: " + partial;
+        return result;
     }
 
     @Override
