@@ -6,6 +6,7 @@ package com.mycompany.guessthenumber.service;
 
 import com.mycompany.guessthenumber.model.Game;
 import com.mycompany.guessthenumber.model.Round;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,7 +17,8 @@ public class ServiceLayerImpl implements ServiceLayer{
 
     @Override
     public List<Game> getAllGames() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        return new ArrayList();
     }
 
     @Override
