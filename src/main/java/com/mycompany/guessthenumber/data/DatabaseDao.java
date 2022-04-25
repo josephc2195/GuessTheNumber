@@ -98,5 +98,22 @@ public class DatabaseDao implements Dao{
         return game;
     }
     
+    @Override
+    public Boolean addRound(Round round) {
+        final String cmd = "INSERT INTO round(gameId, guess) VALUES(?,?);";
+        GeneratedKeyHolder keyHolder = new GeneratedKeyHolder();
+
+        return jdbcTemplate.update((Connection conn) -> {
+
+            PreparedStatement statement = conn.prepareStatement(
+                cmd, 
+                Statement.RETURN_GENERATED_KEYS);
+
+            statement.setInt(1, round.getGameId());
+            statement.setString(2, round.getGuess());
+            return statement;
+
+        }, keyHolder) > 0;   
+    }
     
 }

@@ -21,4 +21,6 @@ public interface Dao {
     List<Round> roundsById(int id);
     
     Game addGame(Game game);
+    
+    Boolean addRound(Round round);
 }
