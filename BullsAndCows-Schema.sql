@@ -19,6 +19,7 @@ create table `round`(
 
     roundtime timestamp,
     result varchar(20),
+    guess int,
     
     constraint pk_round
 		primary key(roundid, gameid),
@@ -37,3 +38,4 @@ insert into game(answer, finnished, attempts)
 values(1434, false, 0);
 
 select * from game;
+select * from round;
