@@ -38,13 +38,13 @@ public class Controller {
 
     @PostMapping("/begin")
     @ResponseStatus(HttpStatus.CREATED)
-    public Game startGame() {
+    public void startGame() {
         Random rand = new Random();
         Game game = new Game();
         game.setAnswer(String.valueOf(rand.nextInt(9999)));
         game.setFinished(false);
         game.setAttempts(0);
-        return dao.addGame(game);
+        service.startGame(game);
     }
 
     @PostMapping("/guess")
@@ -55,7 +55,12 @@ public class Controller {
 //        } else if (dao.addRound(round)) {
 //            response = new ResponseEntity(HttpStatus.NO_CONTENT);
 //        }
-        dao.addRound(round);
+        String result = service.guess(round.getGameId(), round.getGuess());
+        if (result.equals("e:e:e:e")) {
+            Game game = service.getGameById(round.getGameId());
+            game.setFinished(true);
+        }
+        //dao.addRound(round);
         return round;
     }
 
@@ -66,11 +71,11 @@ public class Controller {
 
     @GetMapping("/game/{id}")
     public Game gameById(@PathVariable int id) {
-        return dao.gameById(id);
+        return service.getGameById(id);
     }
 
     @GetMapping("/rounds/{id}")
     public List<Round> roundsById(@PathVariable int id) {
-        return dao.roundsById(id);
+        return service.getRounds(id);
     }
 }
