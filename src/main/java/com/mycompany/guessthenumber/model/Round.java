@@ -15,6 +15,7 @@ public class Round {
     private int gameId;
     private LocalDate roundtime;
     private String result;
+    private String guess;
 
     public int getRoundId() {
         return roundId;
@@ -46,6 +47,14 @@ public class Round {
 
     public void setResult(String result) {
         this.result = result;
+    }
+    
+    public String getGuess() {
+        return this.guess;
+    }
+    
+    public void setGuess(String guess) {
+        this.guess = guess;
     }
     
 }
