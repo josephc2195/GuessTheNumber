@@ -8,15 +8,16 @@ import com.mycompany.guessthenumber.data.Dao;
 import com.mycompany.guessthenumber.data.DatabaseDao;
 import com.mycompany.guessthenumber.model.Game;
 import com.mycompany.guessthenumber.model.Round;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 /**
  *
  * @author chica
  */
+@Repository
 public class ServiceLayerImpl implements ServiceLayer{
     
 
